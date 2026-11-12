@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>RE206 W10 词汇发音</title>
+<style>
+  *{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
+  body{font-family:-apple-system,"PingFang SC","Microsoft YaHei",sans-serif;background:#F2F6FA;color:#22323B;padding:16px 14px 40px}
+  h1{font-size:18px;color:#1F4E79;text-align:center;margin-bottom:4px}
+  .sub{font-size:12px;color:#888;text-align:center;margin-bottom:14px}
+  .bar{display:flex;gap:8px;margin-bottom:14px}
+  .bar button{flex:1;padding:11px;border:0;border-radius:10px;font-size:14px;font-weight:600;background:#1F4E79;color:#fff}
+  .bar button:active{opacity:.8}
+  .bar .ghost{background:#fff;color:#1F4E79;border:1px solid #C9D4DE}
+  .sec{font-size:13px;font-weight:700;color:#1F4E79;margin:16px 0 8px}
+  .grid{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+  .w{background:#fff;border-radius:10px;padding:10px 8px;text-align:center;border:1px solid #E1E9F0}
+  .w:active{background:#E8F1FA}
+  .w .en{display:block;font-size:15px;font-weight:700;color:#1F4E79;word-break:break-word}
+  .w .ph{display:block;font-size:11px;color:#B23A2E;margin-top:3px}
+  .w .cn{display:block;font-size:11px;color:#888;margin-top:2px}
+  .tip{margin-top:18px;font-size:11.5px;color:#8A97A3;line-height:1.6;text-align:center}
+</style>
+</head>
+<body>
+<h1>W10 词汇发音</h1>
+<div class="sub">点单词即可朗读 · 2026/11/14 – 11/20</div>
+<div class="bar">
+  <button id="all">▶ 全部播放</button>
+  <button id="stop" class="ghost">■ 停止</button>
+</div>
+<div id="box"></div>
+<div class="tip">若没有声音：请把手机调成响铃模式，并确认系统已安装英文语音包。<br>iPhone 可在「设置 → 辅助功能 → 朗读内容」中检查。</div>
+<script>
+var DATA = [
+ {s:"板块一 · PET 集训准备词 51–75", w:[
+  ["studio","ˈstjuːdiəʊ","录音室"],["regret","rɪˈɡret","后悔"],["influence","ˈɪnfluəns","影响"],
+  ["original","əˈrɪdʒənl","原创的"],["ballet","ˈbæleɪ","芭蕾舞"],["reach","riːtʃ","到达"],
+  ["properly","ˈprɒpəli","正确地"],["habit","ˈhæbɪt","习惯"],["attend","əˈtend","参加"],
+  ["creative","kriˈeɪtɪv","有创造力的"],["basic","ˈbeɪsɪk","基本的"],["in addition","ɪn əˈdɪʃn","此外"],
+  ["support","səˈpɔːt","支持"],["artistic","ɑːˈtɪstɪk","有艺术天赋的"],["competitive","kəmˈpetətɪv","竞争性的"],
+  ["compare","kəmˈpeə(r)","比较"],["waste","weɪst","浪费"],["intend to","ɪnˈtend tə","打算"],
+  ["definitely","ˈdefɪnətli","肯定"],["absolutely","ˈæbsəluːtli","完全地"],["certainly","ˈsɜːtnli","当然"],
+  ["exactly","ɪɡˈzæktli","确切地"],["apart from","əˈpɑːt frəm","除…之外"],["believe","bɪˈliːv","相信"],
+  ["cabin","ˈkæbɪn","小木屋"]
+ ]},
+ {s:"板块二 · U7 From Failure to Success", w:[
+  ["Zimbabwe","zɪmˈbɑːbweɪ","津巴布韦"],["female","ˈfiːmeɪl","女性的"],["outnumber","ˌaʊtˈnʌmbə(r)","数量超过"],
+  ["follow","ˈfɒləʊ","跟随"],["extraordinary","ɪkˈstrɔːdnri","非凡的"],["challenge","ˈtʃælɪndʒ","挑战"],
+  ["efforts","ˈefəts","努力"],["society","səˈsaɪəti","社会"],["reveal","rɪˈviːl","揭示"],
+  ["hidden","ˈhɪdn","隐藏的"],["barrier","ˈbæriə(r)","障碍"],["pursue","pəˈsjuː","追求"],
+  ["failure","ˈfeɪljə(r)","失败"],["success","səkˈses","成功"],["succeed","səkˈsiːd","成功"],
+  ["pleasant","ˈpleznt","愉快的"],["executive","ɪɡˈzekjətɪv","主管"],["necessary","ˈnesəsəri","必要的"],
+  ["in order to","ɪn ˈɔːdə tə","为了"],["factor","ˈfæktə(r)","因素"],["recent","ˈriːsnt","最近的"],
+  ["amount","əˈmaʊnt","数量"],["pay attention to","peɪ əˈtenʃn tə","注意"],["take responsibility","teɪk rɪˌspɒnsəˈbɪləti","承担责任"],
+  ["course","kɔːs","课程"],["human-powered","ˌhjuːmən ˈpaʊəd","人力的"],["aircraft","ˈeəkrɑːft","飞机"],
+  ["essay","ˈeseɪ","文章"],["reaction","riˈækʃn","反应"],["media","ˈmiːdiə","媒体"],
+  ["depend on","dɪˈpend ɒn","依靠"],["motivated","ˈməʊtɪveɪtɪd","有动力的"],["Switzerland","ˈswɪtsələnd","瑞士"],
+  ["researcher","rɪˈsɜːtʃə(r)","研究者"]
+ ]}
+];
+
+var box = document.getElementById("box");
+var flat = [];
+DATA.forEach(function(sec){
+  var h = document.createElement("div");
+  h.className = "sec"; h.textContent = sec.s; box.appendChild(h);
+  var g = document.createElement("div"); g.className = "grid";
+  sec.w.forEach(function(item){
+    flat.push(item[0]);
+    var d = document.createElement("div");
+    d.className = "w";
+    d.innerHTML = '<span class="en">'+item[0]+'</span><span class="ph">'+item[1]+'</span><span class="cn">'+item[2]+'</span>';
+    d.onclick = function(){ speak(item[0]); };
+    g.appendChild(d);
+  });
+  box.appendChild(g);
+});
+
+var synth = window.speechSynthesis;
+var voice = null;
+function pickVoice(){
+  if(!synth) return;
+  var vs = synth.getVoices();
+  if(!vs || !vs.length) return;
+  voice = vs.filter(function(v){return /en-GB/i.test(v.lang);})[0]
+       || vs.filter(function(v){return /^en/i.test(v.lang);})[0] || null;
+}
+if(synth){ pickVoice(); synth.onvoiceschanged = pickVoice; }
+
+function speak(text, cb){
+  if(!synth){ alert("当前浏览器不支持语音朗读，请用 Chrome / Safari 打开"); return; }
+  synth.cancel();
+  var u = new SpeechSynthesisUtterance(text);
+  u.lang = "en-GB"; u.rate = 0.85;
+  if(voice) u.voice = voice;
+  if(cb) u.onend = cb;
+  synth.speak(u);
+}
+
+document.getElementById("stop").onclick = function(){ if(synth) synth.cancel(); };
+document.getElementById("all").onclick = function(){
+  if(!synth) return;
+  var i = 0;
+  (function next(){
+    if(i >= flat.length) return;
+    speak(flat[i++], next);
+  })();
+};
+</script>
+</body>
+</html>
